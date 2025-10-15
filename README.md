@@ -99,3 +99,21 @@ while i < len(a):
 print(''.join(ans))
 ```
 ![Задание со звёздочкой](/images/lab1/img_7.png)
+
+
+# Лабораторна работа №2
+
+Задание 1 
+```py
+nums = []
+def min_max(nums):
+    nums_tup = []
+    if len(nums) > 0:
+        mini = nums_tup.append(min(nums))
+        maxi = nums_tup.append(max(nums))
+        print (tuple(nums_tup))
+    else:
+        raise ValueError
+min_max(nums)
+```
+![Чисто первая] (/images2/lab2/img.1png)
