@@ -132,3 +132,121 @@ unique_sorted(nums)
 ![.](/images2/lab2/img_2.png) 
 ![.](/images2/lab2/img_2.1.png) 
 ![.](/images2/lab2/img_2.2.png) 
+
+Задание 3
+```py
+mat = [[1,2], "xx"]
+def flatten(mat):
+    new_mat = []
+    for num in mat :
+        if type(num) == tuple or type(num) == list:
+            for i in range(len(num)):
+                if num [i] != '':
+                    new_mat.append(num[i])
+        else:
+            raise ValueError
+    print(new_mat)
+flatten(mat)
+```   
+![.](/images2/lab2/img_3.png) 
+![.](/images2/lab2/img_3.1.png) 
+![.](/images2/lab2/img_3.2.png) 
+
+Матрица 1
+```py
+mat = [ [1,2], [3,4]]
+def check_rvanost(mat):
+    dlina = len(mat[-1])
+    for x in mat:
+        if len(x) != dlina:
+            raise ValueError
+        else:
+            return True
+def transpose(mat):
+    if check_rvanost:
+        new_mat = []
+        for stolbik in range (len(mat[-1])):
+            new_row = []
+            for row in range(len(mat)):
+                new_row.append(mat[row][stolbik])
+            new_mat.append(new_row)
+    print(new_mat)
+transpose(mat)           
+``` 
+![.](/images2/lab2/matrica_1.png) 
+
+Матрица 2 
+```py
+mat=[[1,2],[3,4]]
+def check_rvanost(mat):
+    for i in range(len(mat)):
+        if len (mat[i]) == len(mat[i+1]):
+            return True
+        else:
+            return False
+def row_sums(mat):
+    new_mat = []
+    for x in mat:
+        if type(x) == list and check_rvanost(mat):
+            summa = 0
+            for i in range(len(x)):
+                summa += x[i]
+            new_mat.append(summa)
+        else:
+            raise ValueError
+    print(new_mat)
+row_sums(mat)    
+```
+![.](/images2/lab2/matrica_2.png) 
+
+Матрица 3
+```py
+def kol_sums(matrica):
+    results = []
+    max_lenght_row = max([len(row)for row in matrica])
+    try:
+        for i in range(max_lenght_row):
+            count = 0
+            for row in matrica:
+                count += row[i]
+            results.append(count)
+    except:
+        raise ValueError
+    return results
+matrica = [[1,2,3],[4,5,6]]
+print(kol_sums(matrica))
+```
+![.](/images2/lab2/matrica_3.png) 
+
+РЕЙХ
+```py
+roan = ("адольф гитлер верховный","ABB-07", 3.999)
+def fio(roan):
+    if len (roan[0])> 0 :
+        fio = roan[0].split()
+        iniliats = ''.join(i [0]for i in fio).upper()
+        if len (iniliats) == 3 :
+            return fio[0][0].upper() + fio [0][1:] + " " + iniliats [1]  +  " " + iniliats[2] + " "
+        elif len (iniliats) == 2:
+            return fio[0][0].upper() + fio [0][1:] + " " + iniliats [1]  +  " "
+        else:
+             return fio[0][0].upper() + fio [0][1:]
+    else:
+        raise ValueError
+def gpa(roan):
+    if len(str(roan[2])) > 0 :
+        return round (roan[2], 2)
+    else:
+        raise ValueError
+
+def format_record(roan):
+    if tuple(roan) == roan:
+        if len (str(roan[1]))> 0:
+            res = fio(roan) + "," + " " + " mr" + roan [1] + "," + " " + "NBA" + " " + str(gpa(roan))
+            print(roan) 
+            print(res)   
+        else:
+            raise ValueError
+format_record(roan)
+```
+![.](/images2/lab2/tuples_ru.png)
