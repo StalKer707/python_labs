@@ -116,4 +116,17 @@ def min_max(nums):
         raise ValueError
 min_max(nums)
 ```
-![Первое заание](/images2/lab2/img_1.png) 
+![Первое задание][def](/images2/lab2/img_1.png) 
+[def]: /images2/lab2/img_1.2png
+
+
+Задание 2
+```py
+nums = [1.0, 1, 2.5, 2.5, 0]
+def unique_sorted(nums):
+    new_nums = sorted(set(nums))
+    print(new_nums)
+unique_sorted(nums)
+```
+
+
