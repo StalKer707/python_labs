@@ -129,6 +129,6 @@ def unique_sorted(nums):
     print(new_nums)
 unique_sorted(nums)
 ```
-![](/images2/lab2/img_2.png) 
-![](/images2/lab2/img_2.1.png) 
-![](/images2/lab2/img_2.2.png) 
+![.](/images2/lab2/img_2.png) 
+![.](/images2/lab2/img_2.1.png) 
+![.](/images2/lab2/img_2.2.png) 
