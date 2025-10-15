@@ -116,4 +116,4 @@ def min_max(nums):
         raise ValueError
 min_max(nums)
 ```
-![Чисто первая] (/images/lab2/img.1png)
+![Первое заание](/images2/lab2/img_1.png) 
