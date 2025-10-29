@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "name": "Анна",
+    "department": "HR",
+    "email": "anna@company.com"
+  },
+  {
+    "id": 2,
+    "name": "Борис",
+    "department": "IT",
+    "skill": "Python"
+  },
+  {
+    "id": 3,
+    "name": "Виктория",
+    "department": "Finance"
+  }
+]

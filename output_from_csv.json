@@ -1,0 +1,20 @@
+[
+  {
+    "Product": "Ноутбук 'Ultra'",
+    "Price": "120000",
+    "Category": "Электроника",
+    "StockCount": "15"
+  },
+  {
+    "Product": "Кофе (зерно)",
+    "Price": "1500",
+    "Category": "Продукты",
+    "StockCount": "150"
+  },
+  {
+    "Product": "Книга 'Изучаем Python'",
+    "Price": "3000",
+    "Category": "Книги",
+    "StockCount": "45"
+  }
+]
