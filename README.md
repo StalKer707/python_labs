@@ -367,3 +367,201 @@ if __name__ == "__main__":
 ```
 ![.](/images1/lab4/img_lab4.png)
 
+
+# Лабораторная работа №5
+Задание 1 
+```py
+import csv
+from pathlib import Path
+from typing import Union
+
+try:
+    from openpyxl import Workbook
+    from openpyxl.utils import get_column_letter
+except ImportError:
+    raise ImportError(
+        "Для работы с XLSX требуется библиотека openpyxl. "
+        "Установите её: pip install openpyxl"
+    )
+
+
+def csv_to_xlsx(csv_path: Union[str, Path], xlsx_path: Union[str, Path]) -> None:
+    csv_p = Path(csv_path)
+    xlsx_p = Path(xlsx_path)
+    if not csv_p.exists():
+        raise FileNotFoundError(f"CSV файл не найден: {csv_path}")
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Sheet1"
+    row_count = 0
+    max_widths = {}
+    with csv_p.open(encoding="utf-8") as f:
+        reader = csv.reader(f)
+        for row_idx, row in enumerate(reader, start=1):
+            if not row:
+                continue
+            ws.append(row)
+            row_count += 1
+            for col_idx, cell_value in enumerate(row, start=1):
+                current_width = len(str(cell_value))
+                if col_idx not in max_widths:
+                    max_widths[col_idx] = 0
+                max_widths[col_idx] = max(max_widths[col_idx], current_width)
+    if row_count == 0:
+        raise ValueError("Пустой CSV файл")
+    for col_idx, width in max_widths.items():
+        column_letter = get_column_letter(col_idx)
+        adjusted_width = max(width + 2, 8)
+        ws.column_dimensions[column_letter].width = adjusted_width
+    xlsx_p.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(xlsx_p)
+    print(f"Успешно: Файл Excel сoхранен")
+    ```
+    Задание 2
+    ```py
+import json
+import csv
+from pathlib import Path
+from typing import Union, List, Dict, Any
+
+
+def json_to_csv(json_path: Union[str, Path], csv_path: Union[str, Path]) -> None:
+    json_p = Path(json_path)
+    csv_p = Path(csv_path)
+    if not json_p.exists():
+        raise FileNotFoundError(f"JSON файл не найден: {json_path}")
+    with json_p.open(encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, list):
+        raise ValueError("JSON должен содержать список объектов")
+    if not data:
+        raise ValueError("Пустой JSON или неподдерживаемая структура")
+    if not all(isinstance(item, dict) for item in data):
+        raise ValueError("JSON должен содержать список словарей")
+    all_keys = set()
+    for item in data:
+        all_keys.update(item.keys())
+    fieldnames = sorted(all_keys)
+    csv_p.parent.mkdir(parents=True, exist_ok=True)
+    with csv_p.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for item in data:
+            row = {key: item.get(key, "") for key in fieldnames}
+            writer.writerow(row)
+print(f'Успешно: Файл CSV сохранен')
+
+
+def csv_to_json(csv_path: Union[str, Path], json_path: Union[str, Path]) -> None:
+    csv_p = Path(csv_path)
+    json_p = Path(json_path)
+    if not csv_p.exists():
+        raise FileNotFoundError(f"CSV файл не найден: {csv_path}")
+    with csv_p.open(encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        data = list(reader)
+    if not data:
+        raise ValueError("Пустой CSV или отсутствует заголовок")
+    json_p.parent.mkdir(parents=True, exist_ok=True)
+    with json_p.open("w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+print(f"Успешно: Файл JSON сoхранен")
+    ```
+    Задание 3
+    ```py
+    import json
+import csv
+from pathlib import Path
+import sys
+
+try:
+    from lab5.json_csv import json_to_csv, csv_to_json
+    from lab5.csv_xlsx import csv_to_xlsx
+except ImportError:
+    print(f"❌ Ошибка: Не удалось импортировать модули из 'lab5'.")
+    print("Убедитесь, что 'main.py' находится в одной папке с 'lab5',")
+    print("и что в 'lab5' есть файл 'init.py'.")
+    sys.exit(1)
+
+
+def setup_test_files():
+    """
+    
+    """
+    print("--- 🛠️ Создаю тестовые файлы... ---")
+    
+    # Данные для теста JSON -> CSV
+    test_json_data = [
+        {"id": 1, "name": "Анна", "department": "HR", "email": "anna@company.com"},
+        {"id": 2, "name": "Борис", "department": "IT", "skill": "Python"},
+        {"id": 3, "name": "Виктория", "department": "Finance"}
+    ]
+    json_file = Path("source_data.json")
+    with open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(test_json_data, f, ensure_ascii=False, indent=2)
+    print(f"   ✅ Файл '{json_file.name}' создан.")
+
+    # Данные для тестов CSV -> JSON и CSV -> XLSX
+    test_csv_data = [
+        ["Product", "Price", "Category", "StockCount"],
+        ["Ноутбук 'Ultra'", "120000", "Электроника", "15"],
+        ["Кофе (зерно)", "1500", "Продукты", "150"],
+        ["Книга 'Изучаем Python'", "3000", "Книги", "45"]
+    ]
+    csv_file = Path("source_data.csv")
+    with open(csv_file, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerows(test_csv_data)
+    print(f"   ✅ Файл '{csv_file.name}' создан.")
+    print("----------------------------------\n")
+
+
+def main():
+    """
+    
+    """
+    try:
+        # 0. Создаем исходные файлы
+        setup_test_files()
+
+        # --- Тест 1: JSON -> CSV ---
+        print("--- 🧪 Тест 1: Запуск json_to_csv ---")
+        json_in = "source_data.json"
+        csv_out = "output_from_json.csv"
+        json_to_csv(json_in, csv_out)
+        
+
+
+        # --- Тест 2: CSV -> JSON ---
+        print("\n--- 🧪 Тест 2: Запуск csv_to_json ---")
+        csv_in = "source_data.csv"
+        json_out = "output_from_csv.json"
+        csv_to_json(csv_in, json_out)
+
+
+
+        # --- Тест 3: CSV -> XLSX ---
+        print("\n--- 🧪 Тест 3: Запуск csv_to_xlsx ---")
+        # Используем тот же исходный CSV
+        xlsx_out = "output_from_csv.xlsx"
+        csv_to_xlsx(csv_in, xlsx_out)
+    
+
+        print("\n" + "="*40)
+        print("🎉🎉🎉 ВСЕ ТЕСТЫ УСПЕШНО ЗАВЕРШЕНЫ! 🎉🎉🎉")
+        print("Проверьте созданные файлы в папке:")
+        print(f"- {csv_out}")
+        print(f"- {json_out}")
+        print(f"- {xlsx_out}")
+        print("="*40)
+
+    except FileNotFoundError as e:
+        print(f"❌ ОШИБКА: Файл не найден. {e}")
+    except Exception as e:
+        print(f"❌ Произошла непредвиденная ошибка: {e}")
+
+if __name__ == '__main__':
+    main()
+    ```
+    ![.](/images1/lab5/img_lab5.png)
+    ![.](/images1/lab5/img_lab5.2.png)
