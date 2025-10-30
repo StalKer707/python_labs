@@ -563,6 +563,6 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-    ![.](/images1/lab5/img_lab5.png)
-    ![.](/images1/lab5/img_lab5.2.png)
+![.](/images1/lab5/img_lab5.png)
+![.](/images1/lab5/img_lab5.2.png)
     
