@@ -380,8 +380,7 @@ try:
     from openpyxl.utils import get_column_letter
 except ImportError:
     raise ImportError(
-        "Для работы с XLSX требуется библиотека openpyxl. "
-        "Установите её: pip install openpyxl"
+        
     )
 
 
@@ -490,7 +489,7 @@ def setup_test_files():
     """
     print("--- 🛠️ Создаю тестовые файлы... ---")
     
-    # Данные для теста JSON -> CSV
+
     test_json_data = [
         {"id": 1, "name": "Анна", "department": "HR", "email": "anna@company.com"},
         {"id": 2, "name": "Борис", "department": "IT", "skill": "Python"},
@@ -501,7 +500,7 @@ def setup_test_files():
         json.dump(test_json_data, f, ensure_ascii=False, indent=2)
     print(f"   ✅ Файл '{json_file.name}' создан.")
 
-    # Данные для тестов CSV -> JSON и CSV -> XLSX
+    
     test_csv_data = [
         ["Product", "Price", "Category", "StockCount"],
         ["Ноутбук 'Ultra'", "120000", "Электроника", "15"],
@@ -542,7 +541,6 @@ def main():
 
         # --- Тест 3: CSV -> XLSX ---
         print("\n--- 🧪 Тест 3: Запуск csv_to_xlsx ---")
-        # Используем тот же исходный CSV
         xlsx_out = "output_from_csv.xlsx"
         csv_to_xlsx(csv_in, xlsx_out)
     

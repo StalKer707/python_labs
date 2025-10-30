@@ -7,8 +7,7 @@ try:
     from openpyxl.utils import get_column_letter
 except ImportError:
     raise ImportError(
-        "Для работы с XLSX требуется библиотека openpyxl. "
-        "Установите её: pip install openpyxl"
+        
     )
 
 
