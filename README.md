@@ -416,9 +416,9 @@ def csv_to_xlsx(csv_path: Union[str, Path], xlsx_path: Union[str, Path]) -> None
     xlsx_p.parent.mkdir(parents=True, exist_ok=True)
     wb.save(xlsx_p)
     print(f"Успешно: Файл Excel сoхранен")
-    ```
-    Задание 2
-    ```py
+```
+Задание 2
+```py
 import json
 import csv
 from pathlib import Path
@@ -466,9 +466,9 @@ def csv_to_json(csv_path: Union[str, Path], json_path: Union[str, Path]) -> None
     with json_p.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 print(f"Успешно: Файл JSON сoхранен")
-    ```
-    Задание 3
-    ```py
+```
+Задание 3
+```py 
     import json
 import csv
 from pathlib import Path
@@ -562,6 +562,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-    ```
+```
     ![.](/images1/lab5/img_lab5.png)
     ![.](/images1/lab5/img_lab5.2.png)
+    
