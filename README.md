@@ -700,3 +700,4 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+![.](/images1/lab02/img_6.png)
