@@ -6,7 +6,7 @@ name = input()
 age = int(input())
 print(f'Привет, {name}! Через год тебе будет {age + 1}.')
 ```
-![Привет и возраст](./images/lab1/img_1.png)
+![Привет и возраст](/images1/lab01/img_1.png)
 
 Задача 2
 ```py
@@ -21,7 +21,7 @@ sum = a1 + a2
 avg = sum / 2
 print(f'sum={sum}; avg={round(avg, 2)}')
 ```
-![Сумма и среднее](/images/lab1/img_2.png)
+![Сумма и среднее](/images1/lab01/img_2.png)
 
 Задача 3
 ```py
@@ -35,7 +35,7 @@ print(f'База после скидки: {base:.2f}')
 print(f'НДС:               {vat_amount:.2f}')
 print(f'Итого к оплате:    {total:.2f}')
 ```
-![Чек: скидка и НДС](/images/lab1/img_3.png)
+![Чек: скидка и НДС](/images1/lab01/img_3.png)
 
 Задача 4
 ```py
@@ -43,7 +43,7 @@ m = int(input())
 ch = m // 60
 print(f'{ch}:{m - ch * 60}')
 ```
-![Минуты -> ЧЧ:ММ](/images/lab1/img_4.png)
+![Минуты -> ЧЧ:ММ](/images1/lab01/img_4.png)
 
 Задача 5
 ```py
@@ -51,7 +51,7 @@ fio = input().split()
 print(f'Инициалы: {fio[0][0] + fio[1][0] + fio[2][0]}.')
 print(f'Длина (символов): {len(fio[0]) + len(fio[1]) + len(fio[2]) + 2}')
 ```
-![Инициалы и длина строки](/images/lab1/img_5.png)
+![Инициалы и длина строки](/images1/lab01/img_5.png)
 
 Задача 6
 ```py
@@ -68,7 +68,7 @@ for x in range(n):
         f += 1
 print(t, f)
 ```
-![Задание со звёздочкой](/images/lab1/img_6.png)
+![Задание со звёздочкой](/images1/lab01/img_6.png)
 
 Задача 7
 ```py
@@ -98,7 +98,7 @@ while i < len(a):
     i += step
 print(''.join(ans))
 ```
-![Задание со звёздочкой](/images/lab1/img_7.png)
+![Задание со звёздочкой](/images1/lab01/img_7.png)
 
 
 # Лабораторна работа №2
@@ -116,9 +116,9 @@ def min_max(nums):
         raise ValueError
 min_max(nums)
 ```
-![Пункт 1](/images2/lab2/img_1.png) 
-![Пункт 2](/images2/lab2/img_1.2png)
-![Пункт 3](/images2/lab2/img_1.3png)  
+![Пункт 1](/images1/lab02/img_1.png) 
+![Пункт 2](/images1/lab02/img_1.2png)
+![Пункт 3](/images1/lab02/img_1.3png)  
 
 
 Задание 2
@@ -129,9 +129,9 @@ def unique_sorted(nums):
     print(new_nums)
 unique_sorted(nums)
 ```
-![.](/images2/lab2/img_2.png) 
-![.](/images2/lab2/img_2.1.png) 
-![.](/images2/lab2/img_2.2.png) 
+![.](/images1/lab02/img_2.png) 
+![.](/images1/lab02/img_2.1.png) 
+![.](/images1/lab02/img_2.2.png) 
 
 Задание 3
 ```py
@@ -148,9 +148,9 @@ def flatten(mat):
     print(new_mat)
 flatten(mat)
 ```   
-![.](/images2/lab2/img_3.png) 
-![.](/images2/lab2/img_3.1.png) 
-![.](/images2/lab2/img_3.2.png) 
+![.](/images1/lab02/img_3.png) 
+![.](/images1/lab02/img_3.1.png) 
+![.](/images1/lab02/img_3.2.png) 
 
 Матрица 1
 ```py
@@ -173,7 +173,7 @@ def transpose(mat):
     print(new_mat)
 transpose(mat)           
 ``` 
-![.](/images2/lab2/matrica_1.png) 
+![.](/images1/lab02/matrica_1.png) 
 
 Матрица 2 
 ```py
@@ -197,7 +197,7 @@ def row_sums(mat):
     print(new_mat)
 row_sums(mat)    
 ```
-![.](/images2/lab2/matrica_2.png) 
+![.](/images1/lab02/matrica_2.png) 
 
 Матрица 3
 ```py
@@ -216,7 +216,7 @@ def kol_sums(matrica):
 matrica = [[1,2,3],[4,5,6]]
 print(kol_sums(matrica))
 ```
-![.](/images2/lab2/matrica_3.png) 
+![.](/images1/lab02/matrica_3.png) 
 
 РЕЙХ
 ```py
@@ -249,7 +249,7 @@ def format_record(roan):
             raise ValueError
 format_record(roan)
 ```
-![.](/images2/lab2/tuples_ru.png)
+![.](/images1/lab02/tuples_ru.png)
 
 
 # Лабораторная работа №3
@@ -281,7 +281,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-![.](/images1/lab3/img_3laba.png)
+![.](/images1/lab01/img_3laba.png)
 
 
 
@@ -365,7 +365,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-![.](/images1/lab4/img_lab4.png)
+![.](/images1/lab01/img_lab4.png)
 
 
 # Лабораторная работа №5
@@ -561,6 +561,142 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-![.](/images1/lab5/img_lab5.png)
-![.](/images1/lab5/img_lab5.2.png)
+![.](/images1/lab01/img_lab5.png)
+![.](/images1/lab01/img_lab5.2.png)
+
+
+# Лабораторная работа №6
+Задание 1 
+```py
+
+
+import sys
+import argparse
+from pathlib import Path
+
+# Добавляем путь к модулям
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from lab05.json_csv import json_to_csv, csv_to_json
+from lab05.csv_xlsx import csv_to_xlsx
+
+
+def cmd_json2csv(args):
+    try:
+        json_to_csv(args.input, args.output)
+        print(f"✓ JSON → CSV: {args.input} → {args.output}")
+    except FileNotFoundError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except ValueError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def cmd_csv2json(args):
+    try:
+        csv_to_json(args.input, args.output)
+        print(f"✓ CSV → JSON: {args.input} → {args.output}")
+    except FileNotFoundError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except ValueError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def cmd_csv2xlsx(args):
+    try:
+        csv_to_xlsx(args.input, args.output)
+        print(f"✓ CSV → XLSX: {args.input} → {args.output}")
+    except FileNotFoundError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except ValueError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except ImportError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="CLI-утилита для конвертации форматов данных"
+    )
+    subparsers = parser.add_subparsers(dest="cmd", help="Доступные конвертеры")
+    p1 = subparsers.add_parser(
+        "json2csv",
+        help="Конвертировать JSON в CSV"
+    )
+    p1.add_argument(
+        "--in",
+        dest="input",
+        required=True,
+        help="Путь к входному JSON файлу"
+    )
+    p1.add_argument(
+        "--out",
+        dest="output",
+        required=True,
+        help="Путь к выходному CSV файлу"
+    )
+    p2 = subparsers.add_parser(
+        "csv2json",
+        help="Конвертировать CSV в JSON"
+    )
+    p2.add_argument(
+        "--in",
+        dest="input",
+        required=True,
+        help="Путь к входному CSV файлу"
+    )
+    p2.add_argument(
+        "--out",
+        dest="output",
+        required=True,
+        help="Путь к выходному JSON файлу"
+    )
+    p3 = subparsers.add_parser(
+        "csv2xlsx",
+        help="Конвертировать CSV в XLSX"
+    )
+    p3.add_argument(
+        "--in",
+        dest="input",
+        required=True,
+        help="Путь к входному CSV файлу"
+    )
+    p3.add_argument(
+        "--out",
+        dest="output",
+        required=True,
+        help="Путь к выходному XLSX файлу"
+    )
     
+    args = parser.parse_args()
+    
+    if not args.cmd:
+        parser.print_help()
+        sys.exit(1)
+    
+    if args.cmd == "json2csv":
+        cmd_json2csv(args)
+    elif args.cmd == "csv2json":
+        cmd_csv2json(args)
+    elif args.cmd == "csv2xlsx":
+        cmd_csv2xlsx(args)
+
+
+if __name__ == "__main__":
+    main()
+```
