@@ -701,3 +701,142 @@ if __name__ == "__main__":
     main()
 ```
 ![.](/images1/lab02/img_6.png)
+
+
+
+
+
+# Лабораторная работа №7
+Задание 1 
+```py
+import pytest
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "..", "src"))
+
+from lib.text import normalize, tokenize, count_freq, top_n
+
+
+def test_normalize_basic():
+    assert normalize("САП МИР") == "сап мир"
+    assert normalize("Бладс Бладс") == "бладс бладс"
+    print("normalize с базовыми все четко")
+
+
+def test_normalize_edge_cases():
+    assert normalize("") == ""
+    assert normalize("  ") == ""
+    assert normalize("     Много пробелов       ") == "много пробелов"
+    print("normalize с граничными уцы все в порядке")
+
+
+def test_tokenize_basic():
+    result = tokenize("сап ма бой как район")
+    assert result == ["сап", "ма", "бой", "как", "район"]
+
+    result2 = tokenize("ты,он и она!")
+    assert "ты" in result2 and "она" in result2
+    print("tokenize базовые работают")
+
+
+def test_count_freq_basic():
+    tokens = ["черный", "белый", "черный", "белый", "серый"]
+    result = count_freq(tokens)
+    expected = {"черный": 2, "белый": 2, "серый": 1}
+    assert result == expected
+    print("count_freq базовые прошли как надо")
+
+
+def test_top_n_basic():
+    freq_dict = {"Мерс": 3, "БМВ": 3, "Audi": 3}
+    result = top_n(freq_dict, 2)
+    assert result == [("Audi", 3), ("БМВ", 3)]
+    print("top_n сортировка при равной частоте прошла на ура")
+
+
+def test_top_n_tie_breaker():
+    freq_dict = {"пингвин": 3, "медведь": 3, "волк": 3}
+    result = top_n(freq_dict, 2)
+    assert result == [("волк", 3), ("медведь", 3)]
+    print("top_n сортировка при равной частоте прошла")
+```
+![.](/images1/lab02/img_7.png)
+![.](/images1/lab02/img_7.1.png)
+![.](/images1/lab02/img_7.2.png)
+
+
+
+Задание 2
+```py
+import pytest
+import sys
+import os
+import json
+import csv
+from pathlib import Path
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "..", "..", "src"))
+
+from lab05.json_csv import json_to_csv, csv_to_json
+
+
+def test_json_to_csv_basic(tmp_path):
+    """Тестируем конвертацию JSON → CSV"""
+    json_file = tmp_path / "test.json"
+    csv_file = tmp_path / "test.csv"
+
+    test_data = [
+        {"name": "Иван", "age": 25, "city": "Москва"},
+        {"name": "Мария", "age": 30, "city": "СПб"},
+    ]
+
+    with open(json_file, "w", encoding="utf-8") as f:
+        json.dump(test_data, f, ensure_ascii=False)
+
+    json_to_csv(str(json_file), str(csv_file))
+
+    assert csv_file.exists()
+
+    with open(csv_file, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert len(rows)
+    assert rows[0]["name"] == "Иван"
+    assert rows[1]["city"] == "СПб"
+    print(" json_to_csv базовый тест прошёл")
+
+
+def test_csv_to_json_basic(tmp_path):
+    """Тестируем конвертацию CSV → JSON"""
+    csv_file = tmp_path / "test.csv"
+    json_file = tmp_path / "test.json"
+
+    with open(csv_file, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["name", "age", "city"])
+        writer.writeheader()
+        writer.writerow({"name": "Петр", "age": 35, "city": "Казань"})
+        writer.writerow({"name": "Ольга", "age": 28, "city": "Екатеринбург"})
+
+    csv_to_json(str(csv_file), str(json_file))
+
+    assert json_file.exists()
+
+    with open(json_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    assert len(data) == 2
+    assert data[0]["name"] == "Петр"
+    assert data[1]["city"] == "Екатеринбург"
+    print(" csv_to_json базовый тест прошёл")
+
+
+def test_json_to_csv_file_not_found():
+    """Тестируем обработку ошибки когда файл не найден"""
+    with pytest.raises(FileNotFoundError):
+        json_to_csv("nonexistent.json", "output.csv")
+    print(" json_to_csv обработка ошибок прошла")
+```
+![.](/images1/lab02/img_7.3.png)
+![.](/images1/lab02/img_7.4.png)
