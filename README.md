@@ -840,3 +840,150 @@ def test_json_to_csv_file_not_found():
 ```
 ![.](/images1/lab02/img_7.3.png)
 ![.](/images1/lab02/img_7.4.png)
+
+
+
+
+
+# Лабораторная работа №8
+Задание 1 
+```py
+from dataclasses import dataclass 
+from datetime import datetime, date
+import re
+
+@dataclass
+class Student:
+    fio: str
+    birthdate: str
+    group : str
+    gpa : float 
+
+    def __post_init__(self):
+    
+        try:
+            datetime.strptime(self.birthdate,"%Y-%m-%d")
+        except ValueError:
+            raise ValueError ("Чувак дата в формате YYYY-MM-DD")
+
+        if not (0 <= self.gpa <= 5):    
+            raise ValueError("GPA должен быть в диапозоне от 0 до 5")
+        
+
+
+    def age(self) -> int:
+        birth_date = datetime.strptime(self.birthdate, "%Y-%m-%d").date()
+        today = date.today()
+
+        age = today.year - birth_date.year
+
+        if today.month < birth_date.month or(today.month == birth_date.month and today.day < birth_date.day):
+            age -= 1
+        return age
+    def to_dict(self) -> dict:
+        return{
+            "fio": self.fio,
+            "birthdate": self.birthdate,
+            "group": self.group,
+            "gpa": self.gpa
+        }
+    @classmethod
+    
+    def from_dict(cls, d: dict):
+        return cls(
+            fio = d["fio"],
+            birthdate = d ["birthdate"],
+            group = d ["group"],
+            gpa = d["gpa"]
+            )
+    
+    def __str__(self):
+        return f"{self.fio}, {self.group}, GPA: {self.gpa}, Возраст: {self.age()} лет"
+```
+
+
+Задание 2 
+```py
+[{
+    "fio": "Горьковой Владислав",
+    "birthdate": "2005-07-27",
+    "group": "SE-01",
+    "gpa": 4.5
+    },
+    {
+    "fio": "Королева Дарья",
+    "birthdate": "2006-09-27",
+    "group":"SE-02",
+    "gpa": 3.8
+    },
+    {
+    "fio": "Старостина Полина Дьяволица",
+    "birthdate": "2008-01-18",
+    "group": "SE-03",
+    "gpa":5   
+    
+
+}
+]
+```
+
+![.](/images1/lab02/img_8.3.png)
+
+Задание 3
+```py
+
+from models import Student
+from serialize import students_to_json, students_from_json
+
+def test_student():
+    print("=== Тестим класс Student ===")
+    student1 = Student(
+        fio = "Горьковой Владислав",
+        birthdate = "2005-07-27",
+        group = "SE-01",
+        gpa = 4.5
+    )
+    print("Студент создан")
+    print(student1)
+    print(f'Возраст: {student1.age()} лет')
+    print(f'словарь:{student1.to_dict()}')
+    print()
+
+
+def test_serialization():
+    print("===Чекаем сериализации===")
+    students = [
+        Student("Горьковой Владислав","2005-07-27", "SE-01", 4.5),
+        Student("Королева Дарья", "2006-09-27", "SE-02", 3.8),
+        Student("Старостина Полина Дьяволица", "2008-01-18", "SE-03", 5)
+    ]
+    students_to_json(students,"src/lab1/lab8/students_output.json")
+    print("Студенты сохранены в students_output.json")
+
+    loaded_students = students_from_json("src/lab1/lab8/students_input.json")
+    print("Студенты загружены")
+    for student in loaded_students:
+        print(f" - {student}")
+    print()
+
+def test_validation():
+    print("===Чекаем валидации===")
+    try:
+        Student('Тест', "2020-13-45", "SE-01", 3.0)
+    except ValueError as e:
+        print(f"Чувак рил ошибка валидации: {e} ")
+
+    
+    try:
+        Student("Тест", "2020-01-01", "SE-02", 6)
+    except ValueError as e:
+        print(f"Кореш ошибка при валидации GPA: {e} ")
+if __name__ == "__main__":
+    test_student()
+    test_validation()
+    test_serialization()
+    print("S.W.A.T.")
+```
+
+![.](/images1/lab02/img_8.png)
+![.](/images1/lab02/img_8.1.png)
