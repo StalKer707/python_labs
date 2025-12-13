@@ -1241,9 +1241,9 @@ if __name__ == "__main__":
     print("-" * 40)
 
     print("\n===БЛЯТЬ КАК ЖЕ ДОЛГО Я ЭТО ДЕЛАЛ ЧЕКАЙ ВСЕ ЗАЕБИСЬ===")
-    ```
-    ![.](/images1/lab02/img_9.png)
-    ![.](/images1/lab02/img_9.1.png)
-    ![.](/images1/lab02/img_9.2png)
-    ![.](/images1/lab02/img_9.3.png)
+```
+![.](/images1/lab02/img_9.png)
+![.](/images1/lab02/img_9.1.png)
+![.](/images1/lab02/img_9.2png)
+![.](/images1/lab02/img_9.3.png)
 
