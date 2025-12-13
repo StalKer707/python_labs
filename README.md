@@ -1244,6 +1244,6 @@ if __name__ == "__main__":
 ```
 ![.](/images1/lab02/img_9.png)
 ![.](/images1/lab02/img_9.1.png)
-![.](/images1/lab02/img_9.2png)
+![.](/images1/lab02/img_9.2.png)
 ![.](/images1/lab02/img_9.3.png)
 
