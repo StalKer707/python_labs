@@ -1247,3 +1247,110 @@ if __name__ == "__main__":
 ![.](/images1/lab02/img_9.2.png)
 ![.](/images1/lab02/img_9.3.png)
 
+
+
+# Лабораторная работа №10
+Задание 1 
+```py
+try:
+    from src.lab10.linked import LinkedList
+except ImportError:
+    from linked import LinkedList
+
+class Stack:
+    def __init__(self):
+        # Это создает атрибут _list при создании объекта
+        self._list = LinkedList()
+
+    def push(self, item):
+        self._list.insert_at_beginning(item)
+
+    def pop(self):
+        if self.is_empty():
+            return "Стек пуст"
+        return self._list.remove_from_beginning()
+
+    def is_empty(self):
+        return self._list.is_empty()
+
+class Queue:
+    def __init__(self):
+        self._list = LinkedList()
+
+    def enqueue(self, item):
+        self._list.insert_at_end(item)
+
+    def dequeue(self):
+        if self.is_empty():
+            return "Очередь пуста"
+        return self._list.remove_from_beginning()
+
+    def is_empty(self):
+        return self._list.is_empty()
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def is_empty(self):
+        return self.head is None
+
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.is_empty():
+            self.head = new_node
+            return
+        curr = self.head
+        while curr.next:
+            curr = curr.next
+        curr.next = new_node
+
+    def remove_from_beginning(self):
+        if self.is_empty():
+            return None
+        data = self.head.data
+        self.head = self.head.next
+        return data
+
+try:
+    from src.lab10.structures import Stack, Queue
+except ImportError:
+    from structures import Stack, Queue
+
+def test_stack():
+    print("\n--- TECT: CTEK (Stack) ---")
+    s = Stack()
+    for i in [10, 20, 30]:
+        print(f"Добавляем в стек: {i}")
+        s.push(i)
+    print(f"Извлекаем (ожидаем 30): {s.pop()}")
+    print(f"Извлекаем (ожидаем 20): {s.pop()}")
+
+def test_queue():
+    print("\n--- TECT: OЧЕРЕДЬ (Queue) ---")
+    q = Queue()
+    for char in ['A', 'B', 'C']:
+        print(f"Добавляем в очередь: {char}")
+        q.enqueue(char)
+    print(f"Извлекаем (ожидаем A): {q.dequeue()}")
+    print(f"Извлекаем (ожидаем B): {q.dequeue()}")
+
+def main():
+    test_stack()
+    test_queue()
+    print("\nВсе тесты успешно пройдены!")
+
+if __name__ == "__main__":
+    main()
+```
+![.](/images1/lab02/img_10.png)
